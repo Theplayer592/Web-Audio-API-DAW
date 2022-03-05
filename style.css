@@ -1,47 +1,57 @@
 @import url('https://fonts.googleapis.com/css2?family=Hubballi&display=swap');
-
 * {
-  font-family: "Hubballi", Comic Sans MS, Comic Sans, cursive, sans-serif;
-  margin: 0;
-  padding: 0;
+    font-family: "Hubballi", Comic Sans MS, Comic Sans, cursive, sans-serif;
+    margin: 0;
+    padding: 0;
 }
 
 header {
-  text-align: center;
-  border-bottom: 1px solid gray;
-  font-size: 5vh;
-  padding: 1vh;
+    text-align: center;
+    border-bottom: 1px solid gray;
+    font-size: 5vh;
+    padding: 1vh;
 }
 
 header h2 {
-  font-size: 3vh;
-  color: gray;
+    font-size: 3vh;
+    color: gray;
 }
 
 main toolbar #rec {
-  justify-content: center;
-  align-items: center;
-  border-radius: 10px;
-  padding: 10px;
-  border: 1px solid gray;
-  background-color: gray;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    padding: 10px;
+    border: 1px solid rgb(100, 100, 100);
+    background-color: transparent;
+    margin: 0 16px;
+}
+
+main toolbar button {
+    cursor: pointer;
 }
 
 main toolbar {
-  display: flex;
-  flex-direction: row;
-  align-items: stretch;
-  width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+    width: 100%;
+    background-color: gray;
+    bottom: 0;
+    padding: 5px 0;
+    border-radius: 10px;
+    position: absolute;
 }
 
 version {
-  display: flex;
-  position: absolute;
-  bottom: 0;
-  padding: 16px;
-  margin: 6px;
-  z-index: 5;
-  border-radius: 10px;
-  /*box-shadow sourced from https://getcssscan.com/css-box-shadow-examples*/
-  box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+    display: flex;
+    position: absolute;
+    bottom: 0;
+    padding: 16px;
+    margin: 6px;
+    z-index: 5;
+    border-radius: 10px;
+    /*box-shadow sourced from https://getcssscan.com/css-box-shadow-examples*/
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
 }
