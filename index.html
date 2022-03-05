@@ -1,36 +1,44 @@
 <!DOCTYPE html>
 <html lang="en-GB">
-  <!--
+<!--
     TODO: 
       * create about page
       * credit google material icons
   -->
-  <head>
+
+<head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width">
     <title>Web Audio API - DAW test (v0.0.2 "pre-alpha")</title>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link href="style.css" rel="stylesheet" type="text/css">
-  </head>
-  <body style="margin: 0; padding: 0;">
+</head>
+
+<body style="margin: 0; padding: 0;">
     <div id="offline" style="display: none; position: absolute; top: 0; width: 100%; padding: 1vh 0; background-color: red; z-index: 15; text-align: center; margin: 0;"><span style="font-size: 2em; color: white; margin: auto;">You are currently offline.</span></div>
     <div style="display: flex; justify-content: center; align-items: center; height: 100vh; width: 100vw; z-index: 10; background-color: lightgray; position: absolute;" id="loader">
-      <a title="asdasdasdas, CC BY-SA 4.0 &lt;https://creativecommons.org/licenses/by-sa/4.0&gt;, via Wikimedia Commons" href="https://commons.wikimedia.org/wiki/File:Ajux_loader.gif"><img width="128" alt="Ajux loader" src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/54/Ajux_loader.gif/512px-Ajux_loader.gif"></a>
+        <a title="asdasdasdas, CC BY-SA 4.0 &lt;https://creativecommons.org/licenses/by-sa/4.0&gt;, via Wikimedia Commons" href="https://commons.wikimedia.org/wiki/File:Ajux_loader.gif"><img width="128" alt="Ajux loader" src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/54/Ajux_loader.gif/512px-Ajux_loader.gif"></a>
     </div>
     <header>
-      WADAW
-      <h2>Web Audio API Digital Audio Workstation</h2>
+        WDAW
+        <h2>Web Audio API Digital Audio Workstation</h2>
     </header>
     <main>
-      <toolbar>
-        <button id="rec"><span class="material-icons" style="color: white">radio_button_checked</span></button>
-      </toolbar>
+        <toolbar>
+            <button id="rec"><span class="material-icons" style="color: white">radio_button_checked</span></button>
+        </toolbar>
     </main>
     <version>v0.0.2 "pre-alpha"</version>
-    <script>//Send a request every 10 seconds to check if still connected to Wi-Fi
-      window.ononline = function() {document.getElementById("offline").style.display = "none"}
-      window.onoffline = function() {document.getElementById("offline").style.display = "flex"}
+    <script>
+        //Send a request every 10 seconds to check if still connected to Wi-Fi
+        window.ononline = function() {
+            document.getElementById("offline").style.display = "none"
+        }
+        window.onoffline = function() {
+            document.getElementById("offline").style.display = "flex"
+        }
     </script>
     <script src="script.js"></script>
-  </body>
+</body>
+
 </html>
