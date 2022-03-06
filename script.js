@@ -17,10 +17,14 @@ window.onload = function(e) {
 
     window.toolbarF = {
         record: function() {
+            if (window.gum == undefined) functionality()
+            document.getElementById("err").style.display = "none"
             if (isRecording) {
                 elements.record.style.background = "gray"
+                window.mr.stop()
             } else {
                 elements.record.style.background = "red"
+                window.mr.start()
             }
 
             isRecording = !isRecording
@@ -155,13 +159,28 @@ function okd(e) {
 
 async function functionality() {
     try {
-        var gum = await navigator.mediaDevices.getUserMedia({
+        window.gum = await navigator.mediaDevices.getUserMedia({
             audio: true
         })
+        document.getElementById("mic_access_failure").style.display = "none"
     } catch (e) {
-        console.warn(e)
         document.getElementById("mic_access_failure").style.display = "flex"
+        setTimeout(functionality, 1000)
+        return
     }
 
-    document.getElementById("mic_access_failure").style.display = "none"
+    window.mr = new MediaRecorder(window.gum)
+    window.chunks = []
+    window.mr.ondataavailable = function(e) {
+        chunks.push(e.data)
+    }
+    window.mr.onstop = function(e) {
+        var audio = document.createElement("audio")
+        const blob = new Blob(chunks, { 'type': 'audio/ogg; codecs=opus' });
+        window.chunks = []
+        const audioURL = window.URL.createObjectURL(blob);
+        audio.src = audioURL;
+        audio.setAttribute('controls', '');
+        document.getElementById("somestuuf").appendChild(audio)
+    }
 }
