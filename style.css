@@ -41,8 +41,36 @@ main toolbar {
     padding: 5px 0;
     border-radius: 10px;
     position: absolute;
-    resize: horizontal;
+    /*resize: horizontal;*/
     overflow: auto;
+}
+
+
+/*Taken from StackOverflow: https://stackoverflow.com/questions/18580795/possible-to-style-the-css3-resize-function*/
+
+main toolbar #toolbar_handle {
+    display: block;
+    height: 100%;
+    width: 10px;
+    background: rgb(80, 80, 80);
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    z-index: 20;
+    text-align: center;
+    color: gray;
+}
+
+main toolbar #toolbar_handle .material-icons {
+    margin-top: 100%;
+    font-size: 10px;
+}
+
+main toolbar #toolbarheader {
+    z-index: 20;
+    margin-left: 50%;
+    position: absolute;
+    top: 0;
 }
 
 version {
