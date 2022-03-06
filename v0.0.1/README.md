@@ -1,0 +1,1 @@
+## Note: this is a slightly modified version of the project from [here](https://developer.mozilla.org/en-US/docs/Web/API/MediaStream_Recording_API/Using_the_MediaStream_Recording_API#grabbing_and_using_the_blob) so that audio can be saved to localStorage/JSON format. This is not my total original work.
