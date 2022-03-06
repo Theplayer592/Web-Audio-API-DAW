@@ -15,29 +15,43 @@
 </head>
 
 <body style="margin: 0; padding: 0;">
-    <div id="offline" style="display: none; position: absolute; top: 0; width: 100%; padding: 1vh 0; background-color: red; z-index: 15; text-align: center; margin: 0;"><span style="font-size: 2em; color: white; margin: auto;">You are currently offline.</span></div>
+    <div id="err" style="display: none; position: absolute; top: 0; width: 100%; padding: 1vh 0; background-color: red; z-index: 15; text-align: center; margin: 0;"><span style="font-size: 2em; color: white; margin: auto;">You are currently offline.</span></div>
     <div style="display: flex; justify-content: center; align-items: center; height: 100vh; width: 100vw; z-index: 10; background-color: lightgray; position: absolute;" id="loader">
         <a title="asdasdasdas, CC BY-SA 4.0 &lt;https://creativecommons.org/licenses/by-sa/4.0&gt;, via Wikimedia Commons" href="https://commons.wikimedia.org/wiki/File:Ajux_loader.gif"><img width="128" alt="Ajux loader" src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/54/Ajux_loader.gif/512px-Ajux_loader.gif"></a>
     </div>
-    <header>
-        WADAW
-        <h2>Web Audio API Digital Audio Workstation</h2>
-    </header>
-    <main>
-        <toolbar id="toolbar" style="bottom: 0;">
-            <div id="toolbar_handle" style="cursor: e-resize;"></div>
-            <div id="toolbarheader" style="cursor: move;"><span class="material-icons">drag_handle</span></div>
-            <button id="rec" onclick="toolbarF.record()"><span class="material-icons" style="color: white">radio_button_checked</span></button>
-        </toolbar>
-    </main>
-    <!--<version>v0.0.2 "pre-alpha"</version>-->
+    <div id="non-overlay">
+        <div id="mic_access_failure">
+            <div id="modal_main">
+                <h1>Failed to access microphone</h1>
+                <br /><br />
+                <h2>Please give this app permission to use your microphone, otherwise the applicaton will not work.</h2>
+            </div>
+        </div>
+        <header>
+            <div id="F2_mode" title="F2 mode"></div>
+            WADAW
+            <h2>Web Audio API Digital Audio Workstation</h2>
+        </header>
+        <main>
+            <toolbar id="toolbar" style="bottom: 0;">
+                <div id="toolbar_handle" style="cursor: e-resize;"></div>
+                <div id="toolbarheader" style="cursor: move;"><span class="material-icons">drag_handle</span></div>
+                <button id="rec" onclick="toolbarF.record()"><span class="material-icons" style="color: white">radio_button_checked</span></button>
+            </toolbar>
+        </main>
+    </div>
+    <version onclick="hide('vn')" id="vn">v0.0.2 "pre-alpha"</version>
     <script>
-        //Send a request every 10 seconds to check if still connected to Wi-Fi
         window.ononline = function() {
-            document.getElementById("offline").style.display = "none"
+            document.getElementById("err").style.display = "none"
         }
         window.onoffline = function() {
-            document.getElementById("offline").style.display = "flex"
+            document.getElementById("err").getElementsByTagName("span")[0].innerText = "You are currently offline"
+            document.getElementById("err").style.display = "flex"
+        }
+        if (!navigator.onLine) {
+            document.getElementById("err").getElementsByTagName("span")[0].innerText = "You are currently offline"
+            document.getElementById("err").style.display = "flex"
         }
     </script>
     <script src="script.js"></script>

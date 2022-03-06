@@ -5,11 +5,49 @@
     padding: 0;
 }
 
+#mic_access_failure {
+    position: absolute;
+    height: 100vh;
+    width: 100vw;
+    z-index: 999;
+    background: rgba(255, 255, 255, .66);
+    justify-content: center;
+    align-items: center;
+}
+
+#mic_access_failure #modal_main {
+    text-align: center;
+    height: 40%;
+    width: 40%;
+    background-color: white;
+    /*box-shadow sourced from https://getcssscan.com/css-box-shadow-examples*/
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+    padding: 16px;
+    border-radius: 16px;
+}
+
+#mic_access_failure #modal_main h1 {
+    font-size: 3em;
+}
+
+#mic_access_failure #modal_main h2 {
+    font-size: 2em;
+    color: gray;
+}
+
 header {
     text-align: center;
     border-bottom: 1px solid gray;
     font-size: 5vh;
     padding: 1vh;
+}
+
+header #F2_mode {
+    float: left;
+    height: 2vh;
+    width: 2vh;
+    border-radius: 50%;
+    background: gray;
 }
 
 header h2 {
@@ -56,7 +94,7 @@ main toolbar #toolbar_handle {
     position: absolute;
     bottom: 0;
     right: 0;
-    z-index: 20;
+    z-index: 11;
     text-align: center;
     color: gray;
 }
@@ -74,6 +112,7 @@ main toolbar #toolbarheader {
 }
 
 version {
+    user-select: none;
     display: flex;
     position: absolute;
     bottom: 0;
@@ -83,4 +122,10 @@ version {
     border-radius: 10px;
     /*box-shadow sourced from https://getcssscan.com/css-box-shadow-examples*/
     box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+}
+
+version:hover {
+    transform: scale(1.25, 1.25);
+    margin: 24px;
+    cursor: pointer;
 }

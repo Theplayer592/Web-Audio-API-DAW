@@ -1,20 +1,38 @@
 window.onload = function(e) {
+    if (!navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+        document.getElementById("err").getElementsByTagName("span")[0].innerText = "Your device does not support the web API properly. Please upgrade your browser."
+        document.getElementById("err").style.display = "flex"
+        document.getElementById("non-overlay").innerHTML = `<div style="display: flex; justify-content: center; align-items: center; height: 100vh;"><a title="REditsOfficial, CC BY-SA 4.0 &lt;https://creativecommons.org/licenses/by-sa/4.0&gt;, via Wikimedia Commons" href="https://commons.wikimedia.org/wiki/File:ErrorMessage.png"><img width="512" alt="ErrorMessage" src="https://upload.wikimedia.org/wikipedia/commons/3/34/ErrorMessage.png"></a></div>`
+        return requestAnimationFrame(() => {
+            document.getElementById("loader").style.display = "none"
+            window.allLoaded = true
+        })
+    }
+
+    window.debug = false
     window.isRecording = false
+    window.elements = {
+        record: document.getElementById("rec")
+    }
 
     window.toolbarF = {
         record: function() {
             if (isRecording) {
-                document.getElementById("rec").style.background = "gray"
+                elements.record.style.background = "gray"
             } else {
-                document.getElementById("rec").style.background = "red"
+                elements.record.style.background = "red"
             }
 
             isRecording = !isRecording
         }
     }
 
+    window.onkeydown = okd
+
     dragableElement(document.getElementById("toolbar"))
     resizableToolbar()
+
+    functionality()
 
     //Wait for all of the files to load before removing the loading screen
     //Because JavaScript takes so long to load an execute, this should make sure that everything has enough time to load
@@ -71,8 +89,10 @@ function dragableElement(elmnt) {
         pos4 = e.clientY;
         // set the element's new position:
         if ((elmnt.offsetTop - pos2) < (window.innerHeight - (getComputedStyle(elmnt).height.split("px")[0]) - 9)) {
-            elmnt.style.top = (elmnt.offsetTop - pos2) + "px"
-            elmnt.style.bottom = ""
+            if ((elmnt.offsetTop - pos2) > -1) {
+                elmnt.style.top = (elmnt.offsetTop - pos2) + "px"
+                elmnt.style.bottom = ""
+            }
         } else {
             elmnt.style.top = ""
             elmnt.style.bottom = 0
@@ -113,4 +133,35 @@ function resizableToolbar() {
         document.onmousemove = null;
         document.onmouseup = null;
     }
+}
+
+function hide(id) {
+    document.getElementById(id).style.display = "none"
+}
+
+function okd(e) {
+    if (e.key == "F2") {
+        window.debug = !window.debug
+        if (debug) document.getElementById("F2_mode").style.background = "red"
+        else document.getElementById("F2_mode").style.background = "gray"
+    }
+
+    if (debug && e.key == "v") {
+        if (document.getElementById("vn").style.display == "none") document.getElementById("vn").style.display = "flex"
+        else if (document.getElementById("vn").style.display == "flex") document.getElementById("vn").style.display = "none"
+        else document.getElementById("vn").style.display = "none"
+    }
+}
+
+async function functionality() {
+    try {
+        var gum = await navigator.mediaDevices.getUserMedia({
+            audio: true
+        })
+    } catch (e) {
+        console.warn(e)
+        document.getElementById("mic_access_failure").style.display = "flex"
+    }
+
+    document.getElementById("mic_access_failure").style.display = "none"
 }
